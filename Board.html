@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chess Board</title>
+	<link rel="stylesheet" type="text/css" href="board.css">
+    <p id="turn"></p>
+    <script src="generateBoard.js"></script>
+    <script src="checkMove.js"></script>
+    <script src="engineMove.js"></script>
+</head>
+<body>
+    <div id="myVariable"></div>
+</body>
+<body>
+    <form onsubmit="event.preventDefault(); generateBoard(document.getElementById('fen-string').value)">
+        <label for="fen-string">Enter FEN string:</label>
+        <input type="text" id="fen-string" name="fen-string">
+        <button type="submit">Generate Board</button>
+      </form>
+	<div class="board">
+        <div class="row">
+            <div class="cell white" row="0" col="0" onclick="movePiece(event)"></div>
+            <div class="cell black" row="0" col="1" onclick="movePiece(event)"></div>
+            <div class="cell white" row="0" col="2" onclick="movePiece(event)"></div>
+            <div class="cell black" row="0" col="3" onclick="movePiece(event)"></div>
+            <div class="cell white" row="0" col="4" onclick="movePiece(event)"></div>
+            <div class="cell black" row="0" col="5" onclick="movePiece(event)"></div>
+            <div class="cell white" row="0" col="6" onclick="movePiece(event)"></div>
+            <div class="cell black" row="0" col="7" onclick="movePiece(event)"></div>
+        </div>
+        <div class="row">
+            <div class="cell black" row="1" col="0" onclick="movePiece(event)"></div>
+            <div class="cell white" row="1" col="1" onclick="movePiece(event)"></div>
+            <div class="cell black" row="1" col="2" onclick="movePiece(event)"></div>
+            <div class="cell white" row="1" col="3" onclick="movePiece(event)"></div>
+            <div class="cell black" row="1" col="4" onclick="movePiece(event)"></div>
+            <div class="cell white" row="1" col="5" onclick="movePiece(event)"></div>
+            <div class="cell black" row="1" col="6" onclick="movePiece(event)"></div>
+            <div class="cell white" row="1" col="7" onclick="movePiece(event)"></div>
+        </div>
+        <div class="row">
+            <div class="cell white" row="2" col="0" onclick="movePiece(event)"></div>
+            <div class="cell black" row="2" col="1" onclick="movePiece(event)"></div>
+            <div class="cell white" row="2" col="2" onclick="movePiece(event)"></div>
+            <div class="cell black" row="2" col="3" onclick="movePiece(event)"></div>
+            <div class="cell white" row="2" col="4" onclick="movePiece(event)"></div>
+            <div class="cell black" row="2" col="5" onclick="movePiece(event)"></div>
+            <div class="cell white" row="2" col="6" onclick="movePiece(event)"></div>
+            <div class="cell black" row="2" col="7" onclick="movePiece(event)"></div>
+        </div>
+        <div class="row">
+            <div class="cell black" row="3" col="0" onclick="movePiece(event)"></div>
+            <div class="cell white" row="3" col="1" onclick="movePiece(event)"></div>
+            <div class="cell black" row="3" col="2" onclick="movePiece(event)"></div>
+            <div class="cell white" row="3" col="3" onclick="movePiece(event)"></div>
+            <div class="cell black" row="3" col="4" onclick="movePiece(event)"></div>
+            <div class="cell white" row="3" col="5" onclick="movePiece(event)"></div>
+            <div class="cell black" row="3" col="6" onclick="movePiece(event)"></div>
+            <div class="cell white" row="3" col="7" onclick="movePiece(event)"></div>
+        </div>
+        <div class="row">
+            <div class="cell white" row="0" col="0" onclick="movePiece(event)"></div>
+            <div class="cell black" row="4" col="1" onclick="movePiece(event)"></div>
+            <div class="cell white" row="4" col="2" onclick="movePiece(event)"></div>
+            <div class="cell black" row="4" col="3" onclick="movePiece(event)"></div>
+            <div class="cell white" row="4" col="4" onclick="movePiece(event)"></div>
+            <div class="cell black" row="4" col="5" onclick="movePiece(event)"></div>
+            <div class="cell white" row="4" col="6" onclick="movePiece(event)"></div>
+            <div class="cell black" row="4" col="7" onclick="movePiece(event)"></div>
+        </div>
+        <div class="row">
+            <div class="cell black" row="5" col="0" onclick="movePiece(event)"></div>
+            <div class="cell white" row="5" col="1" onclick="movePiece(event)"></div>
+            <div class="cell black" row="5" col="2" onclick="movePiece(event)"></div>
+            <div class="cell white" row="5" col="3" onclick="movePiece(event)"></div>
+            <div class="cell black" row="5" col="4" onclick="movePiece(event)"></div>
+            <div class="cell white" row="5" col="5" onclick="movePiece(event)"></div>
+            <div class="cell black" row="5" col="6" onclick="movePiece(event)"></div>
+            <div class="cell white" row="5" col="7" onclick="movePiece(event)"></div>
+        </div>
+        <div class="row">
+            <div class="cell white" row="6" col="0" onclick="movePiece(event)"></div>
+            <div class="cell black" row="6" col="1" onclick="movePiece(event)"></div>
+            <div class="cell white" row="6" col="2" onclick="movePiece(event)"></div>
+            <div class="cell black" row="6" col="3" onclick="movePiece(event)"></div>
+            <div class="cell white" row="6" col="4" onclick="movePiece(event)"></div>
+            <div class="cell black" row="6" col="5" onclick="movePiece(event)"></div>
+            <div class="cell white" row="6" col="6" onclick="movePiece(event)"></div>
+            <div class="cell black" row="6" col="7" onclick="movePiece(event)"></div>
+        </div>
+        <div class="row">
+            <div class="cell black" row="7" col="0" onclick="movePiece(event)"></div>
+            <div class="cell white" row="7" col="1" onclick="movePiece(event)"></div>
+            <div class="cell black" row="7" col="2" onclick="movePiece(event)"></div>
+            <div class="cell white" row="7" col="3" onclick="movePiece(event)"></div>
+            <div class="cell black" row="7" col="4" onclick="movePiece(event)"></div>
+            <div class="cell white" row="7" col="5" onclick="movePiece(event)"></div>
+            <div class="cell black" row="7" col="6" onclick="movePiece(event)"></div>
+            <div class="cell white" row="7" col="7" onclick="movePiece(event)"></div>
+        </div>
+      </div>      
+</body>
+</html>
