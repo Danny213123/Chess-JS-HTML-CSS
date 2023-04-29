@@ -6,6 +6,7 @@ let selectedPieceX = 0;
 let selectedPieceY = 0;
 
 let moves = [];
+let board = [];
 
 let turn = "white";
 document.getElementById("turn").innerHTML = (turn == "white") ? "Turn: White" : "Turn: Black";
@@ -49,12 +50,10 @@ function boardToArray() {
         let row = parseInt(cell.getAttribute("row"));
         let col = parseInt(cell.getAttribute("col"));
         let pieceClass = cell.classList.value.split(" ").pop();
-        console.log(pieceClass)
         if (pieceClass !== "empty") {
             if (pieceClass == "white" || pieceClass == "black"){
                 board[row][col] = "-";
             } else {
-                console.log(pieceClass, "fuck");
                 board[row][col] = pieceTable[pieceClass];
             }
         } else {
@@ -90,10 +89,12 @@ function movePiece(event) {
 
         if (piece != null) {
             
-            let board = boardToArray();
+            board = boardToArray();
 
             if (piece == "white-pawn") {
                 moves = whitePawn(currentRowNum, currentCol, board, []);
+            } else if (piece == "black-pawn") {
+                moves = blackPawn(currentRowNum, currentCol, board, []);
             }
 
             // Check if selected piece belongs to the current turn
@@ -112,13 +113,24 @@ function movePiece(event) {
         }
 
     // console.log(`Selected piece at (${selectedPieceY},${selectedPieceX})`);
-  } else {
-    let nextCell = document.querySelector(`.cell[row="${currentRowNum}"][col="${currentCol}"]`);
-    let previousCell = document.querySelector(`.cell[row="${selectedPieceY}"][col="${selectedPieceX}"]`);
-    let pieceClassList = previousCell.classList;
-    let piece = pieceClassList.contains("piece") ? pieceClassList.item(pieceClassList.length - 1) : null;
+    } else {
+        let nextCell = document.querySelector(`.cell[row="${currentRowNum}"][col="${currentCol}"]`);
+        let previousCell = document.querySelector(`.cell[row="${selectedPieceY}"][col="${selectedPieceX}"]`);
+        let pieceClassList = previousCell.classList;
+        let piece = pieceClassList.contains("piece") ? pieceClassList.item(pieceClassList.length - 1) : null;
+        
+        // Check if move is valid
+        let validMove = false;
+        for (let i = 0; i < moves.length; i++) {
+            if (moves[i][0] === currentRowNum && moves[i][1] === currentCol) {
+                validMove = true;
+                break;
+            }
+        }
 
-        if (piece !== null) {
+        console.log(validMove, moves, currentRowNum, currentCol);
+        
+        if (validMove && piece !== null) {
             nextCell.classList.remove('piece'); 
             nextCell.classList.remove(...Object.values(pieces));
             nextCell.classList.add("piece", piece);
@@ -131,10 +143,13 @@ function movePiece(event) {
             turn = (turn == "white") ? "black" : "white";
             document.getElementById("turn").innerHTML = (turn == "white") ? "Turn: White" : "Turn: Black";
         } else {
-            console.log("No piece found in selected cell!");
+            console.log("Invalid move or no piece found in selected cell!");
             selectedPiece = false;
             selectedPieceX = 0;
             selectedPieceY = 0;
         }
+
+        boardToArray();
+        board = console.log(board);
     }
 }
