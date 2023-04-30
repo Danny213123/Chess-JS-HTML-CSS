@@ -7,6 +7,9 @@ function whitePawn(row, col, board, moves) {
         }
     }
 
+    console.log(board, "FSDFSDFSDF")
+    console.log(board[row - 1][col - 1], row, col)
+
     if (row - 1 >= 0 && col - 1 >= 0) {
         if (board[row - 1][col - 1] != "-" && board[row - 1][col - 1].includes("b")) {
             possiblePosition.push([row - 1, col - 1]);

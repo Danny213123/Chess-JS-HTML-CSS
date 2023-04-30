@@ -1,17 +1,17 @@
 function generateBoard(fen) {
 
-    const [boardPosition, activeColor, castlingAvailability, enPassantTargetSquare, halfmoveClock, fullmoveNumber] = fen.split(' ');
+    const [boardPosition, activeColour, castlingAvailability, enPassantTargetSquare, halfmoveClock, fullmoveNumber] = fen.split(' ');
 
     // Convert board position component to board state
     const boardState = boardPosition.split('/').map(row => {
     let newRow = [];
     for (let i = 0; i < row.length; i++) {
         if (isNaN(row[i])) {
-        newRow.push(row[i]);
+            newRow.push(row[i]);
         } else {
-        for (let j = 0; j < parseInt(row[i]); j++) {
-            newRow.push(null);
-        }
+            for (let j = 0; j < parseInt(row[i]); j++) {
+                newRow.push(null);
+            }
         }
     }
     return newRow;
@@ -43,15 +43,21 @@ function generateBoard(fen) {
     });
 
     for (let i = 0; i < boardState.length; i++) {
-    for (let j = 0; j < boardState[i].length; j++) {
-        if (boardState[i][j] !== null) {
-        const cell = cells[cellIndex];
-        const pieceClass = pieces[boardState[i][j]];
-        cell.classList.add('piece', pieceClass);
+        for (let j = 0; j < boardState[i].length; j++) {
+            if (boardState[i][j] !== null) {
+            const cell = cells[cellIndex];
+            const pieceClass = pieces[boardState[i][j]];
+            cell.classList.add('piece', pieceClass);
+            }
+            cellIndex++;
         }
-        cellIndex++;
     }
-    }
+
+    createPieceTable();
+    boardToArray();
+    console.log(activeColour);
+    turn = (activeColour == "w") ? "white" : "black";
+    document.getElementById("turn").innerHTML = (turn == "white") ? "Turn: White" : "Turn: Black";
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {

@@ -1,12 +1,12 @@
 .board {
-    display: flex;
-    flex-wrap: wrap;
-    width: 400px;
-    height: 400px;
-    border: 2px solid black;
-    margin: auto;
-    margin-top: 50px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  width: 780px;
+  height: 780px;
+  border: 2px solid black;
+  margin: auto;
+  margin-top: 50px;
+}
   
   .row {
     display: flex;
@@ -14,10 +14,17 @@
   }
   
   .cell {
-    width: 50px;
-    height: 50px;
+    width: 97.5px;
+    height: 97.5px;
   }
   
+  .piece {
+    width: 97.5px;
+    height: 97.5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
   .piece.white-king {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg");
     background-position: center center;
@@ -84,4 +91,20 @@
   
   .black {
     background-color: rgb(143, 138, 138);
+  }
+
+  .valid_conquer {
+    box-shadow: inset 0px 0px 0px 3px #ff00dd;
+  }
+
+  .valid {
+    box-shadow: inset 0px 0px 0px 3px #fffc00;
+  }
+
+  .active {
+    box-shadow: inset 0px 0px 0px 3px #00ff00;
+  }
+
+  .move {
+    transition: transform 0.2s ease-in-out;
   }
