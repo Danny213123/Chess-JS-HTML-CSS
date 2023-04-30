@@ -216,14 +216,19 @@ function movePiece(event) {
 
                 clearHighlights();
 
-                console.log(previousCell)
+                console.log(activePiece, piece)
 
-                previousCell.classList.remove("piece");
-                previousCell.classList.add("empty");
-                nextCell.classList.remove('piece'); 
-                nextCell.classList.remove(...Object.values(pieces));
-
-                nextCell.classList.add("piece", activePiece);
+                if (piece == null) {
+                    previousCell.classList.remove("piece");
+                    previousCell.classList.remove(activePiece);
+                    nextCell.classList.add("piece", activePiece);
+                } else {
+                    previousCell.classList.remove("piece");
+                    previousCell.classList.remove(activePiece);
+                    nextCell.classList.remove("piece");
+                    nextCell.classList.remove(piece);
+                    nextCell.classList.add("piece", activePiece);
+                }
 
                 // Reset selectedPiece variables
                 selectedPiece = false;
