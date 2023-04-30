@@ -120,11 +120,21 @@ function movePiece(event) {
             
             boardToArray();
             console.log(piece);
-            if (piece == "white-pawn") {
-                moves = whitePawn(currentRowNum, currentCol, board, []);
-            } else if (piece == "black-pawn") {
-                moves = blackPawn(currentRowNum, currentCol, board, []);
+            if (piece == "white-pawn" || piece == "black-pawn") {
+                moves = (turn == "white") ? whitePawn(currentRowNum, currentCol, board, []) : blackPawn(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-rook" || piece == "black-rook") {
+                moves = rookMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-knight" || piece == "black-knight") {
+                moves = knightMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-bishop" || piece == "black-bishop") {
+                moves = bishopMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-queen" || piece == "black-queen") {
+                moves = queenMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-king" || piece == "black-king") {
+                moves = kingMoves(currentRowNum, currentCol, board, []);
             }
+
+            console.log(moves, "FFFF")
 
             // remove all valid cells
             clearHighlights();
@@ -154,19 +164,27 @@ function movePiece(event) {
     } else {
 
         let nextCell = document.querySelector(`.cell[row="${currentRowNum}"][col="${currentCol}"]`);
-        let currentPiece = (nextCell.classList.length > 3) ? nextCell.classList[3] : null;
+        let piece = (nextCell.classList.length > 3) ? nextCell.classList[3] : null;
 
-        if (nextCell.classList.length > 3 && currentPiece.includes(turn)) {
+        if (nextCell.classList.length > 3 && piece.includes(turn)) {
 
             clearHighlights();
 
             let activeCell = document.querySelector(`.cell[row="${currentRowNum}"][col="${currentCol}"]`);
             activeCell.classList.add("active");
 
-            if (currentPiece == "white-pawn") {
-                moves = whitePawn(currentRowNum, currentCol, board, []);
-            } else if (currentPiece == "black-pawn") {
-                moves = blackPawn(currentRowNum, currentCol, board, []);
+            if (piece == "white-pawn" || piece == "black-pawn") {
+                moves = (turn == "white") ? whitePawn(currentRowNum, currentCol, board, []) : blackPawn(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-rook" || piece == "black-rook") {
+                moves = rookMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-knight" || piece == "black-knight") {
+                moves = knightMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-bishop" || piece == "black-bishop") {
+                moves = bishopMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-queen" || piece == "black-queen") {
+                moves = queenMoves(currentRowNum, currentCol, board, []);
+            } else if (piece == "white-king" || piece == "black-king") {
+                moves = kingMoves(currentRowNum, currentCol, board, []);
             }
 
             // Highlight possible moves
